@@ -1,0 +1,10 @@
+Spring web service example
+--------------------------
+
+Modules
+=======
+
+1 - hrm-ws-api
+2 - hrm-ws-service
+3 - hrm-ws-client
+4 - hrm-web-client
