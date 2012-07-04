@@ -17,7 +17,7 @@ public class EmployeeController {
 		e.setId(1);
 		e.setFirstName("Hasitha");//TODO Test
 		e.setLastName("Wijesekara");//TODO set name
-		model.addAttribute("employee", e);
+		model.addAttribute("employee", e);//Add Attribute
 		return "findEmployee";
 	}
 }
