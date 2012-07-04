@@ -25,17 +25,17 @@ public class EmployeeController {
 	
 	@RequestMapping(value = "/find", method = RequestMethod.GET)
 	public String find(ModelMap model){
-		String strId = request.getParameter("empId");
+		final String strId = request.getParameter("empId");
 		Long id = 0L;
 	
 		if(strId != null && !strId.equals("")){
 			id = Long.parseLong(strId);
 		}
-		GetEmployeeRequest empReq = new GetEmployeeRequest();
+		final GetEmployeeRequest empReq = new GetEmployeeRequest();
 		empReq.setId(id);
 		
-		EmployeeResponse empRes = empService.getEmployee(empReq);
-		Employee e = empRes.getEmployee().get(0);
+		final EmployeeResponse empRes = empService.getEmployee(empReq);
+		final Employee e = empRes.getEmployee().get(0);
 		model.addAttribute("employee", e);
 		return "findEmployee";
 	}
