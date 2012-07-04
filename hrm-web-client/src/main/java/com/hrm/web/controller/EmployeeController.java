@@ -15,7 +15,7 @@ public class EmployeeController {
 	public String find(ModelMap model){
 		Employee e = new Employee();//TODO This should get form web service
 		e.setId(1);
-		e.setFirstName("Hasitha");
+		e.setFirstName("Hasitha");//TODO Test
 		e.setLastName("Wijesekara");
 		model.addAttribute("employee", e);
 		return "findEmployee";
