@@ -4,7 +4,7 @@
 <title>:: Web service client</title>
 </head>
 <body>
-	<h3>Employee</h3>
+	<h3 id="result">Employee</h3>
 	<br/>
 	
 	Employee ID : <p style="color: green;"> ${employee.id}<p/>
