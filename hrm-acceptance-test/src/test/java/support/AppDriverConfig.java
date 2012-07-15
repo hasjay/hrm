@@ -69,12 +69,10 @@ public class AppDriverConfig {
 	private boolean isSauceTest(){
 		final String env = System.getenv("SAUCE_CONN");
 		boolean envSauceConn = false;
-		System.out.println("env : " + env);
 		if(isNotEmpty(env)){
 			final Boolean b = new Boolean(env.trim());
 			envSauceConn = b.booleanValue();
 		}
-		System.out.println("isSauceTest : " + envSauceConn);
 		if(!envSauceConn){
 			return sauceTest;
 		}
