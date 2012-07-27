@@ -68,6 +68,7 @@ public class AppDriverConfig {
 	
 	private boolean isSauceTest(){
 		final String env = System.getenv("SAUCE_CONN");
+		//TODO In CI server doesn't SAUCE_CONN env variable yet, need to fix that 
 		boolean envSauceConn = false;
 		if(isNotEmpty(env)){
 			final Boolean b = new Boolean(env.trim());
