@@ -14,6 +14,8 @@
 			</property>
 	  </bean>
       
+      <bean class="support.stubs.StubWebServerConfiguration"></bean>
+      
       <bean class="support.AppDriverConfig"></bean>
                            
 	  <bean id="appDriver" class="support.SeleniumAppDriver"></bean>	                           

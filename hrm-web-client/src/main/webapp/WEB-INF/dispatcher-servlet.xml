@@ -8,7 +8,13 @@
                            http://www.springframework.org/schema/context 
                            http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<context:component-scan base-package="com.hrm.web"/>
+	<context:component-scan base-package="com.hrm.web, com.hrm.ws.config"/>
+	
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:env/#{T(com.hrm.config.SystemUtils).getEnvironment()}/settings.properties</value>
+		</property>
+	</bean>
 				
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -21,19 +27,9 @@
 	</bean>
 	
 	<bean id="wsTemplate" class="org.springframework.ws.client.core.WebServiceTemplate"
-    	  p:defaultUri="http://localhost:8080/hrm-ws-service/hrmservice/"
-    	  p:marshaller-ref="marshaller"
-    	  p:unmarshaller-ref="marshaller" />
-
-    <bean id="marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
-    	 <property name="classesToBeBound">
-            <list>
-                <value>com.hrm.ws.schema.bean.employee.Employee</value>
-                <value>com.hrm.ws.schema.bean.employee.GetEmployeeRequest</value>
-                <value>com.hrm.ws.schema.bean.employee.EmployeeResponse</value>
-            </list>
-        </property> 
-    </bean> 
+    	  p:defaultUri="${ws.endpoint.url}"
+    	  p:marshaller-ref="employeeMarshaller"
+    	  p:unmarshaller-ref="employeeMarshaller" />
 
     <bean id="empService" class="com.hrm.ws.api.client.EmployeeServiceGateway"/>
 

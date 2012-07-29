@@ -17,14 +17,6 @@ class EmployeeSpecification extends spock.lang.Specification {
 	@Autowired
 	private SeleniumAppDriver appDriver;
 	
-//	def setup(){
-//		appDriver.setup()
-//	}
-//	
-//	def cleanup(){
-//		appDriver.tearDown()
-//	}
-	
 	def "web application loads index page"(){
 		when:
 		appDriver.showHomePage()
