@@ -7,20 +7,7 @@
                            http://www.springframework.org/schema/context 
                            http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<context:component-scan base-package="com.hrm.ws.api.endpoint, com.hrm.ws.config" />
-
-	<bean id="employee"
-		class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition"
-		p:portTypeName="Employee" p:locationUri="http://localhost:8081/hrm-ws-service/hrmservice"
-		p:requestSuffix="-request" p:responseSuffix="-response">
-		<property name="schema">
-			<bean class="org.springframework.xml.xsd.SimpleXsdSchema" p:xsd="classpath:/xsd/employee.xsd">
-			</bean>
-		</property>
-		<property name="targetNamespace" value="http://www.hrm.com/ws/schema/bean/employee" />
-	</bean>
-	
-	<bean id="employeeService" class="support.stubs.StubEmployeeService" />
+	<context:component-scan base-package="com.hrm.ws.api.endpoint, com.hrm.spring.config.ws" />
 
 	<bean
 		class="org.springframework.ws.server.endpoint.mapping.PayloadRootAnnotationMethodEndpointMapping" />

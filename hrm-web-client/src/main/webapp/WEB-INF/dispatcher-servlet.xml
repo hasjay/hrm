@@ -3,17 +3,26 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jms="http://www.springframework.org/schema/jms"
        xsi:schemaLocation="http://www.springframework.org/schema/beans 
                            http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/context 
-                           http://www.springframework.org/schema/context/spring-context.xsd">
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/jms 
+						   http://www.springframework.org/schema/jms/spring-jms.xsd">
 
-	<context:component-scan base-package="com.hrm.web, com.hrm.ws.config"/>
+	<context:component-scan base-package="com.hrm.web, com.hrm.spring.config"/>
 	
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location">
 			<value>classpath:env/#{T(com.hrm.config.SystemUtils).getEnvironment()}/settings.properties</value>
 		</property>
+	</bean>
+	
+	<!-- Register the Employee.properties -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="properties/Employee" />
 	</bean>
 				
 	<bean id="viewResolver"
@@ -32,5 +41,12 @@
     	  p:unmarshaller-ref="employeeMarshaller" />
 
     <bean id="empService" class="com.hrm.ws.api.client.EmployeeServiceGateway"/>
-
+	
+	<!-- Spring JMS Template -->
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+	   <property name="connectionFactory" ref="jmsConnectionFactory"/>
+	   <property name="defaultDestination" ref="destination"/>
+	</bean>
+	
+	<bean id="registrationService" class="com.hrm.jms.RegistrationServiceImpl"></bean> 
 </beans>	

@@ -4,11 +4,12 @@
 </head>
 
 <body>
-<h3>Find Employee</h3>
+<h3>Employee</h3>
 <br/>
 	<form action="pub/find">
-		Employee ID : <input name="empId" type="text" value="0" id="txt_find"/><br/>
+		Employee ID : <input name="empId" type="text" value="0" id="txt_find"/><br/><br/>
 		<input type="submit" value="Find" id="btn_find">
+		<a href="pub/register" id="lnk_reg">Register New</a>
 	</form>
 </body>
 </html>

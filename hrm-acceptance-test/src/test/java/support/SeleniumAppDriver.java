@@ -16,9 +16,21 @@ public class SeleniumAppDriver {
 	public void showHomePage() {
 		goToHomePage();
 	}
-
-	public String findSearchBox() {
-		WebElement element = elementById("txt_find");
+	
+	public void showRegistrationPage() {
+		goToHomePage();
+		WebElement element = elementById("lnk_reg");
+		element.click();
+	}
+	
+	public void register(String firstName,String lastName){
+		enterTextInField("firstName", firstName);
+		enterTextInField("lastName", lastName);
+		submit(elementById("btn_register"));
+	}
+	
+	public String findElementOnPage(String id) {
+		WebElement element = elementById(id);
 		return element.getAttribute("name");
 	}
 
@@ -39,6 +51,23 @@ public class SeleniumAppDriver {
 
 	WebElement elementById(String id) {
 		return webDriver.findElement(By.id(id));
+	}
+	
+	boolean hasElement(String id) {
+		try{
+			webDriver.findElement(By.id(id));
+		}catch(NoSuchElementException e){
+			return false;
+		}
+		return true;
+	}
+	
+	void waitFor(long time){
+		try {
+			Thread.sleep(time);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	void goToHomePage() {
