@@ -29,6 +29,11 @@
 				<td><form:errors path="lastName" cssClass="error" /></td>
 			</tr>
 			<tr>
+				<td>Email</td>
+				<td><form:input path="email" /></td>
+				<td><form:errors path="email" cssClass="error" /></td>
+			</tr>
+			<tr>
 				<td align="right"><input type="submit" value="Register" id="btn_register"></td>
 				<td><input type="reset" value="Reset" id="btn_reset"></td>
 				<td></td>
