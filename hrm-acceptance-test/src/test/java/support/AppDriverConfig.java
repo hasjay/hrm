@@ -34,7 +34,7 @@ public class AppDriverConfig {
 		WebDriver webDriver=null;
 		if(isSauceTest()){
 			try{
-				DesiredCapabilities capabillities = DesiredCapabilities.firefox();
+				final DesiredCapabilities capabillities = getDesiredCapabilities();
 		        capabillities.setCapability("version", version);
 		        capabillities.setCapability("platform", resolvePlatform());
 		        capabillities.setCapability("name", getTestName());
@@ -80,10 +80,31 @@ public class AppDriverConfig {
 		return envSauceConn;
 	}
 	
+	private DesiredCapabilities getDesiredCapabilities(){
+		final String browser = System.getProperty("browser");
+		DesiredCapabilities capabillities = null;
+		
+		if(!isNotEmpty(browser)){
+			return DesiredCapabilities.firefox();
+		}
+		if("firefox".equalsIgnoreCase(browser)){
+			capabillities = DesiredCapabilities.firefox();
+		}else if("chrome".equalsIgnoreCase(browser)){
+			capabillities = DesiredCapabilities.chrome();
+		}else if("ie".equalsIgnoreCase(browser)){
+			capabillities = DesiredCapabilities.internetExplorer();
+		}else{
+			capabillities = DesiredCapabilities.firefox();
+		}
+		
+		return capabillities;
+	}
+	
 	private boolean isNotEmpty(String value){
 		if(value != null && !value.isEmpty()){
 			return true;
 		}
 		return false;
 	}
+
 }

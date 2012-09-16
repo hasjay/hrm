@@ -50,7 +50,7 @@ class EmployeeSpecification extends spock.lang.Specification {
 	def "system should register new employee"(){
 		when:
 		appDriver.showRegistrationPage()
-		appDriver.register("jone","perera")
+		appDriver.register("jone","perera","jone@test.com")
 		
 		then:
 		appDriver.hasElement("page_process")

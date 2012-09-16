@@ -23,9 +23,10 @@ public class SeleniumAppDriver {
 		element.click();
 	}
 	
-	public void register(String firstName,String lastName){
+	public void register(String firstName,String lastName,String email){
 		enterTextInField("firstName", firstName);
 		enterTextInField("lastName", lastName);
+		enterTextInField("email", email);
 		submit(elementById("btn_register"));
 	}
 	
